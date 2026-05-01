@@ -1,0 +1,96 @@
+:root {
+  --sidebar-width: 250px;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background: #f4f6fb;
+}
+
+.auth-wrapper {
+  min-height: 100vh;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  border: 0;
+  border-radius: 16px;
+}
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  background: #0f172a;
+  color: #fff;
+  padding: 1.2rem 0.9rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+
+.brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.nav-link {
+  color: #cbd5e1;
+  border-radius: 10px;
+  margin-bottom: 0.35rem;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #fff;
+  background: rgba(148, 163, 184, 0.2);
+}
+
+.main-content {
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  padding: 1.3rem;
+}
+
+.stat-card {
+  border: 0;
+  border-radius: 14px;
+}
+
+.overdue-text {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.content-card {
+  border: 0;
+  border-radius: 14px;
+}
+
+@media (max-width: 991px) {
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+
+  .main-content {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .app-shell {
+    display: block;
+  }
+}

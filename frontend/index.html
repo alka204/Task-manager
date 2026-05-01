@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Task Manager</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">Team Task Manager</div>
+        <p class="small text-light-emphasis mb-3" id="userMeta"></p>
+
+        <div class="nav flex-column nav-pills gap-1 mb-4">
+          <button class="nav-link active" data-section="dashboardSection">
+            Dashboard
+          </button>
+          <button class="nav-link" data-section="projectsSection">Projects</button>
+          <button class="nav-link" data-section="tasksSection">Tasks</button>
+          <button class="nav-link" data-section="teamSection">Team</button>
+        </div>
+
+        <button class="btn btn-sm btn-outline-light w-100" onclick="logout()">
+          Logout
+        </button>
+      </aside>
+
+      <main class="main-content">
+        <section id="dashboardSection">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="mb-0">Dashboard</h3>
+            <button class="btn btn-sm btn-outline-primary" onclick="refreshAll()">
+              Refresh
+            </button>
+          </div>
+          <div class="row g-3" id="statsGrid"></div>
+        </section>
+
+        <section id="projectsSection" class="d-none">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="mb-0">Projects</h3>
+          </div>
+
+          <div class="card content-card shadow-sm p-3 mb-3 d-none" id="projectFormCard">
+            <h5>Create Project (Admin)</h5>
+            <div class="row g-2">
+              <div class="col-md-4">
+                <input
+                  id="projectName"
+                  class="form-control"
+                  placeholder="Project name"
+                />
+              </div>
+              <div class="col-md-5">
+                <input
+                  id="projectDescription"
+                  class="form-control"
+                  placeholder="Project description"
+                />
+              </div>
+              <div class="col-md-3">
+                <select id="projectMembers" class="form-select" multiple></select>
+              </div>
+            </div>
+            <button class="btn btn-primary mt-3" onclick="createProject()">
+              Create Project
+            </button>
+          </div>
+
+          <div class="row g-3" id="projectList"></div>
+        </section>
+
+        <section id="tasksSection" class="d-none">
+          <h3 class="mb-3">Tasks</h3>
+
+          <div class="card content-card shadow-sm p-3 mb-3 d-none" id="taskFormCard">
+            <h5>Create Task (Admin)</h5>
+            <div class="row g-2">
+              <div class="col-md-3">
+                <input id="taskTitle" class="form-control" placeholder="Title" />
+              </div>
+              <div class="col-md-3">
+                <input
+                  id="taskDescription"
+                  class="form-control"
+                  placeholder="Description"
+                />
+              </div>
+              <div class="col-md-2">
+                <select id="taskPriority" class="form-select">
+                  <option value="Low">Low</option>
+                  <option value="Medium" selected>Medium</option>
+                  <option value="High">High</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <input id="taskDeadline" type="date" class="form-control" />
+              </div>
+              <div class="col-md-2">
+                <select id="taskProject" class="form-select"></select>
+              </div>
+              <div class="col-md-3 mt-2">
+                <select id="taskAssignedTo" class="form-select"></select>
+              </div>
+            </div>
+            <button class="btn btn-primary mt-3" onclick="createTask()">
+              Create Task
+            </button>
+          </div>
+
+          <div class="row g-3" id="taskList"></div>
+        </section>
+
+        <section id="teamSection" class="d-none">
+          <h3 class="mb-3">Team Members</h3>
+          <div class="card content-card shadow-sm p-3">
+            <div id="teamList" class="table-responsive"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
