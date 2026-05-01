@@ -1,5 +1,7 @@
 const token = localStorage.getItem("token");
-const API_BASE = localStorage.getItem("apiBaseUrl") || "http://localhost:5000/api";
+const API_BASE =
+  localStorage.getItem("apiBaseUrl") ||
+  "https://task-manager-production-1f26.up.railway.app/api";
 
 if (!token) {
   window.location.href = "login.html";
@@ -41,7 +43,8 @@ function hydrateUserFromToken() {
       id: payload.userId,
       role: payload.role,
     };
-    document.getElementById("userMeta").textContent = `Role: ${state.user.role}`;
+    document.getElementById("userMeta").textContent =
+      `Role: ${state.user.role}`;
   } catch (_error) {
     logout();
   }
@@ -49,7 +52,9 @@ function hydrateUserFromToken() {
 
 function applyRoleVisibility() {
   const isAdmin = state.user && state.user.role === "admin";
-  document.getElementById("projectFormCard").classList.toggle("d-none", !isAdmin);
+  document
+    .getElementById("projectFormCard")
+    .classList.toggle("d-none", !isAdmin);
   document.getElementById("taskFormCard").classList.toggle("d-none", !isAdmin);
 }
 
@@ -79,7 +84,12 @@ async function request(path, options = {}) {
 
 async function refreshAll() {
   try {
-    await Promise.all([loadDashboard(), loadTeamMembers(), loadProjects(), loadTasks()]);
+    await Promise.all([
+      loadDashboard(),
+      loadTeamMembers(),
+      loadProjects(),
+      loadTasks(),
+    ]);
   } catch (error) {
     alert(error.message);
   }
@@ -181,7 +191,8 @@ function renderProjects() {
 
   projectList.innerHTML = state.projects
     .map((project) => {
-      const memberNames = (project.members || []).map((m) => m.name).join(", ") || "No members";
+      const memberNames =
+        (project.members || []).map((m) => m.name).join(", ") || "No members";
       return `
       <div class="col-lg-6">
         <div class="card content-card shadow-sm h-100">
@@ -215,27 +226,39 @@ function fillMemberSelect() {
   }
 
   select.innerHTML = state.members
-    .map((member) => `<option value="${member._id}">${member.name} (${member.role})</option>`)
+    .map(
+      (member) =>
+        `<option value="${member._id}">${member.name} (${member.role})</option>`,
+    )
     .join("");
 
   const assigneeSelect = document.getElementById("taskAssignedTo");
-  assigneeSelect.innerHTML = '<option value="">Assign to...</option>' +
-    state.members.map((member) => `<option value="${member._id}">${member.name}</option>`).join("");
+  assigneeSelect.innerHTML =
+    '<option value="">Assign to...</option>' +
+    state.members
+      .map((member) => `<option value="${member._id}">${member.name}</option>`)
+      .join("");
 }
 
 function fillProjectSelect() {
   const select = document.getElementById("taskProject");
   select.innerHTML =
     '<option value="">Choose project...</option>' +
-    state.projects.map((project) => `<option value="${project._id}">${project.name}</option>`).join("");
+    state.projects
+      .map(
+        (project) => `<option value="${project._id}">${project.name}</option>`,
+      )
+      .join("");
 }
 
 async function createProject() {
   const name = document.getElementById("projectName").value.trim();
-  const description = document.getElementById("projectDescription").value.trim();
-  const members = Array.from(document.getElementById("projectMembers").selectedOptions).map(
-    (option) => option.value,
-  );
+  const description = document
+    .getElementById("projectDescription")
+    .value.trim();
+  const members = Array.from(
+    document.getElementById("projectMembers").selectedOptions,
+  ).map((option) => option.value);
 
   if (!name || !description) {
     alert("Project name and description are required.");
