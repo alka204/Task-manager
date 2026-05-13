@@ -2,12 +2,6 @@
 
 Full-stack web application where users can create projects, assign tasks, and track progress with role-based access (`admin` / `member`).
 
-## Assignment Submission
-
-- Live URL: `ADD_YOUR_RAILWAY_URL_HERE`
-- GitHub Repo: `ADD_YOUR_GITHUB_REPO_URL_HERE`
-- Demo Video (2-5 min): `ADD_YOUR_VIDEO_LINK_HERE`
-
 ## Features Implemented
 
 - Authentication
